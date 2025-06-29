@@ -729,6 +729,8 @@ extern int		Tk_UpdateCmd _ANSI_ARGS_((ClientData clientData,
 			    Tcl_Interp *interp, int argc, char **argv));
 extern int		Tk_WinfoCmd _ANSI_ARGS_((ClientData clientData,
 			    Tcl_Interp *interp, int argc, char **argv));
+extern int		Tk_WinfoCmdSetLegacy _ANSI_ARGS_((ClientData clientData,
+			    Tcl_Interp *interp, int argc, char **argv));
 extern int		Tk_WmCmd _ANSI_ARGS_((ClientData clientData,
 			    Tcl_Interp *interp, int argc, char **argv));
 extern int		Tcp_AcceptCmd _ANSI_ARGS_((ClientData clientData,

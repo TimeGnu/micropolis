@@ -793,7 +793,19 @@ void tk_main(void)
 
   sim = MakeNewSim();
 
-  sprintf(initCmd, "source %s/micropolis.tcl", ResourceDir);
+  sprintf(initCmd, "%s/simcity.tcl", ResourceDir);
+  if (access(initCmd, R_OK) == 0) {
+    printf("Found %s, entering legacy mode.\n", initCmd);
+    LegacyMode = 1;
+    SugarMode = 0;
+    Eval("winfo-setlegacy");
+  }
+
+  if (!LegacyMode) {
+    sprintf(initCmd, "source %s/micropolis.tcl", ResourceDir);
+  } else {
+    sprintf(initCmd, "source %s/simcity.tcl", ResourceDir);
+  }
   filename2UNIX(initCmd);
   if (Eval(initCmd)) {
     sim_exit(1); // Just sets tkMustExit and ExitReturn
@@ -810,8 +822,13 @@ void tk_main(void)
 
   { char buf[1024];
 
-    sprintf(buf, "UIStartMicropolis {%s} {%s} {%s}",
-	    HomeDir, ResourceDir, HostName);
+    if (!LegacyMode) {
+      sprintf(buf, "UIStartMicropolis {%s} {%s} {%s}",
+	      HomeDir, ResourceDir, HostName);
+    } else {
+      sprintf(buf, "UIStartSimCity {%s} {%s} {} {%s}",
+	      HomeDir, ResourceDir, HostName);
+    }
     filename2UNIX(buf);
     if (Eval(buf) != TCL_OK) {
       sim_exit(1); // Just sets tkMustExit and ExitReturn

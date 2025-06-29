@@ -134,6 +134,7 @@ TkCmd commands[] = {
     {"tkwait",		Tk_TkwaitCmd},
     {"update",		Tk_UpdateCmd},
     {"winfo",		Tk_WinfoCmd},
+    {"winfo-setlegacy",	Tk_WinfoCmdSetLegacy},
     {"wm",		Tk_WmCmd},
     {"accept",		Tcp_AcceptCmd},
     {"shutdown",	Tcp_ShutdownCmd},

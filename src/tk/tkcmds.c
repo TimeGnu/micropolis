@@ -500,6 +500,22 @@ WaitWindowProc (
     }
 }
 
+static int LegacyMode = 0;
+
+int
+Tk_WinfoCmdSetLegacy (
+    ClientData clientData,	/* Main window associated with
+				 * interpreter. */
+    Tcl_Interp *interp,		/* Current interpreter. */
+    int argc,			/* Number of arguments. */
+    char **argv		/* Argument strings. */
+)
+{
+    LegacyMode = 1;
+
+    return TCL_OK;
+}
+
 /*
  *----------------------------------------------------------------------
  *
@@ -750,7 +766,7 @@ Tk_WinfoCmd (
 	    case PseudoColor:	interp->result = "pseudocolor"; break;
 	    case GrayScale:	interp->result = "grayscale"; break;
 	    case DirectColor:	interp->result = "directcolor"; break;
-	    case TrueColor:	interp->result = "truecolor"; break;
+	    case TrueColor:	interp->result = LegacyMode?"pseudocolor":"truecolor"; break;
 	    case StaticColor:	interp->result = "staticcolor"; break;
 	    case StaticGray:	interp->result = "staticgray"; break;
 	    default:		interp->result = "unknown"; break;

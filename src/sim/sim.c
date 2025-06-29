@@ -94,6 +94,7 @@ char *StartupName = NULL;
 int WireMode = 0;
 int MultiPlayerMode = 0;
 int SugarMode = 0;
+int LegacyMode = 0;
 int TilesAnimated = 0;
 int DoAnimation = 1;
 int DoMessages = 1;

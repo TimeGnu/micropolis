@@ -617,6 +617,7 @@ extern Sim *sim;
 extern int WireMode;
 extern int MultiPlayerMode;
 extern int SugarMode;
+extern int LegacyMode;
 extern int sim_delay;
 extern int sim_skips;
 extern int sim_skip;
